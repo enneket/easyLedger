@@ -24,6 +24,27 @@ allprojects {
     }
 }
 
+// 新增：强制所有子项目使用Java 17编译（匹配你系统的Java 17.0.17）
+subprojects {
+    afterEvaluate { project ->
+        if (project.hasProperty('android')) {
+            android {
+                compileOptions {
+                    // 适配系统Java 17，解决source release 21错误
+                    sourceCompatibility JavaVersion.VERSION_17
+                    targetCompatibility JavaVersion.VERSION_17
+                }
+                // 兼容Kotlin编译（若项目用到Kotlin，无则不影响）
+                if (project.plugins.hasPlugin('org.jetbrains.kotlin.android')) {
+                    kotlinOptions {
+                        jvmTarget = "17"
+                    }
+                }
+            }
+        }
+    }
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

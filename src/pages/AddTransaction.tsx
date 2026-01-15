@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { ArrowLeft, Calendar, Check, ChevronRight } from 'lucide-react';
+import { ArrowLeft, Calendar, Check, ChevronRight, PlusCircle } from 'lucide-react';
 import { format } from 'date-fns';
 import { zhCN } from 'date-fns/locale';
 import { useStore } from '../hooks/useStore';
@@ -149,7 +149,7 @@ export default function AddTransaction() {
               
               <button type="button" className="flex flex-col items-center gap-2">
                 <div className="w-12 h-12 rounded-full bg-gray-50 border border-dashed border-gray-300 flex items-center justify-center text-gray-400">
-                  <PlusCircleIcon size={20} />
+                  <PlusCircle size={20} />
                 </div>
                 <span className="text-xs text-text-secondary">设置</span>
               </button>
@@ -190,24 +190,5 @@ export default function AddTransaction() {
         </div>
       </form>
     </div>
-  );
-}
-
-function PlusCircleIcon({ size }: { size: number }) {
-  return (
-    <svg 
-      width={size} 
-      height={size} 
-      viewBox="0 0 24 24" 
-      fill="none" 
-      stroke="currentColor" 
-      strokeWidth="2" 
-      strokeLinecap="round" 
-      strokeLinejoin="round"
-    >
-      <circle cx="12" cy="12" r="10" />
-      <path d="M8 12h8" />
-      <path d="M12 8v8" />
-    </svg>
   );
 }
